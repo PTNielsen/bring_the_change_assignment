@@ -1,4 +1,4 @@
-require "pry"
+#require "pry"
 require "minitest/autorun"
 
 class Register
@@ -22,7 +22,7 @@ class Register
   end
 end
 
-binding.pry
+#binding.pry
 
 class RegisterTest < Minitest::Test
   def test_change_1
