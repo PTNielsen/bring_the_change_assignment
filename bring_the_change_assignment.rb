@@ -1,4 +1,4 @@
-#require "pry"
+require "pry"
 require "minitest/autorun"
 
 class Register
@@ -11,18 +11,20 @@ class Register
   end
 
   def change
-     @number_of_quarters = @amount / @quarter
-     @after_quarter = @amount.%(@quarter)
-     @number_of_dimes = @after_quarter / @dime
-     @after_dimes = @after_quarter.%(@dime)
-     @number_of_nickels = @after_dimes / @nickel
-     @after_nickel = @after_dimes.%(@nickel)
-     @number_of_pennies = @after_nickel / @penny
-     change = [@number_of_quarters,@number_of_dimes,@number_of_nickels,@number_of_pennies]
+    # Takes advantage of Ruby's inability to divide with remainders
+    @number_of_quarters = @amount / @quarter
+    @after_quarter = @amount.%(@quarter)
+
+    @number_of_dimes = @after_quarter / @dime
+    @after_dimes = @after_quarter.%(@dime)
+
+    @number_of_nickels = @after_dimes / @nickel
+    @after_nickel = @after_dimes.%(@nickel)
+    
+    @number_of_pennies = @after_nickel / @penny
+    change = [@number_of_quarters,@number_of_dimes,@number_of_nickels,@number_of_pennies]
   end
 end
-
-#binding.pry
 
 class RegisterTest < Minitest::Test
   def test_change_1
